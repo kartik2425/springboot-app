@@ -10,6 +10,14 @@ public class VoteService {   // Declare VoteService class
         candidates.add(candidate);                    // Add to list
     }
 
+    public static int castVote(String name) {         // Method to cast vote
+        Candidate candidate = findCandidateByName(name);  // Find candidate
+        if (candidate != null) {                       // Check if valid
+            candidate.incrementVoteCount();           // Increment votes
+            return candidate.getVoteCount();           // Return vote count
+        }
+        return -1;  // Invalid candidate
+    }
     public static int countVote(String name) {        // Method to count votes
         Candidate candidate = findCandidateByName(name);  // Find candidate
         return (candidate != null) ? candidate.getVoteCount() : -1;  // Return vote count or -1 if invalid candidate
